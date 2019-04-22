@@ -19,7 +19,6 @@ const CardItem = styled(Link)`
 
   &:hover {
     color: white;
-    transform: translateY(-6px);
   }
 
   @media (max-width: ${props => props.theme.breakpoints.s}) {
@@ -46,7 +45,7 @@ const Content = styled.div`
 
   ${CardItem}:hover & {
     opacity: 1;
-    height: 120px;
+    /* height: 120px; */
   }
 `
 

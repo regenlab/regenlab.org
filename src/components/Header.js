@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { Flex, Box } from 'rebass'
 
 const Wrapper = styled.div`
-  background: url("${props => props.theme.bgPattern}") #000;
+  background: url("${props => props.theme.bgImage}") #000;
   display: flex;
   position: relative;
+  background-size: cover;
 `
 
 const Content = styled.div`
@@ -20,25 +22,29 @@ const Content = styled.div`
   }
 `
 
-const Avatar = styled.div`
+const Logo = styled.div`
   height: 125px;
   width: 125px;
   margin: 0 auto;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -o-crisp-edges;
-  image-rendering: -webkit-optimize-contrast;
-  -ms-interpolation-mode: nearest-neighbor;
+  background: rgb(68, 58, 180);
+  background: linear-gradient(
+    25deg,
+    rgba(68, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 53%,
+    rgba(252, 123, 55, 1) 76%,
+    rgba(69, 252, 198, 1) 100%
+  );
 
-  img {
-    border-radius: 50%;
-    height: 125px;
-    width: 125px;
-  }
+  border-radius: 50%;
+  height: 125px;
+  width: 125px;
 `
 
 const Name = styled.h1`
   margin: 1rem 0 0.25rem 0;
   color: ${props => props.theme.colors.color};
+  font-weight: 200;
+  font-size: 72px;
 `
 
 const Location = styled.div`
@@ -59,10 +65,12 @@ const SocialMedia = styled.div`
 const Header = ({ avatar, name, location, socialMedia }) => (
   <Wrapper>
     <Content>
-      <Avatar>
-        <img src={avatar} alt={name} />
-      </Avatar>
-      <Name>{name}</Name>
+      <Flex>
+        <Box mr={[0, 3, 3]}>
+          <Logo />
+        </Box>
+        <Name>{name}</Name>
+      </Flex>
       <Location>{location}</Location>
       <SocialMedia>
         {socialMedia.map(social => (
