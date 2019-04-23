@@ -16,12 +16,13 @@ const CardItem = styled(Link)`
   justify-content: flex-end;
   color: ${props => props.theme.colors.color};
   transition: all 0.3s ease-in-out;
+  background-color: white;
 
   &:hover {
     color: white;
   }
 
-  @media (max-width: ${props => props.theme.breakpoints.s}) {
+  @media (max-width: ${props => props.theme.breakpoints[1]}) {
     min-height: 300px;
   }
 `
@@ -39,14 +40,9 @@ const Content = styled.div`
   padding: 1rem;
   position: relative;
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  opacity: 0;
-  background: ${props => rgba(props.theme.colors.link, 0.65)};
-  height: 0;
-
-  ${CardItem}:hover & {
-    opacity: 1;
-    /* height: 120px; */
-  }
+  opacity: 1;
+  background: black;
+  min-height: 120px;
 `
 
 const Bottom = styled.div`
@@ -75,9 +71,9 @@ const Card = ({ path, cover, date, areas, title, delay }) => {
   return (
     <animated.div style={springProps}>
       <CardItem to={path}>
-        <Cover>
+        {/* <Cover>
           <Img fluid={cover} />
-        </Cover>
+        </Cover> */}
         <Content>
           <Name>{title}</Name>
           <Bottom>

@@ -1,7 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { Flex, Box } from 'rebass'
+import { Text, Flex, Box } from 'rebass'
+import theme from '../../config/theme'
+
+const Line = styled.span`
+  width: 100px;
+  border-top: 1px solid white;
+  display: inline-block;
+  margin-top: ${props => props.theme.space[2]}px;
+`
 
 const Wrapper = styled.div`
   background: url("${props => props.theme.bgImage}") #000;
@@ -13,11 +21,11 @@ const Wrapper = styled.div`
 const Content = styled.div`
   margin: 0 auto;
   max-width: ${props => props.theme.maxWidths.general};
-  padding: 3rem 1.0875rem 3rem 1.0875rem;
+  padding: 20rem 1.0875rem 10rem 1.0875rem;
   color: ${props => props.theme.colors.secondary};
   text-align: center;
-  height: 600px;
-  @media (max-width: ${props => props.theme.breakpoints.s}) {
+  height: 1000px;
+  @media (max-width: ${props => props.theme.breakpoints[1]}) {
     height: 500px;
   }
 `
@@ -62,23 +70,22 @@ const SocialMedia = styled.div`
   }
 `
 
-const Header = ({ avatar, name, location, socialMedia }) => (
+const Header = ({ name }) => (
   <Wrapper>
     <Content>
       <Flex>
-        <Box mr={[0, 3, 3]}>
-          <Logo />
+        <Box mr={3}>
+          <div dangerouslySetInnerHTML={{ __html: theme.logo }} />
         </Box>
         <Name>{name}</Name>
       </Flex>
-      <Location>{location}</Location>
-      <SocialMedia>
-        {socialMedia.map(social => (
-          <a key={social.name} href={social.url} rel="noopener noreferrer" target="_blank">
-            {social.name}
-          </a>
-        ))}
-      </SocialMedia>
+
+      <Flex ml={6} mt={3} alignItems="top">
+        <Line />
+        <Text fontFamily="sans" ml={3} width="240px" textAlign="left">
+          A laboratory of technology and design in service to regenerative agriculture
+        </Text>
+      </Flex>
     </Content>
   </Wrapper>
 )
